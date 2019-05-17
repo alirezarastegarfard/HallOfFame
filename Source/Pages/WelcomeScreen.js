@@ -115,7 +115,7 @@ export default class WelcomeScreen extends React.Component {
 
       // checking input be number
         if (isNaN(this.state.InputValue) && ButtonType === 'Save') {
-            alert('please enter number 3!');
+            alert('please enter number !');
             return;
         }
 
@@ -123,14 +123,14 @@ export default class WelcomeScreen extends React.Component {
 
       //we shuffle the order of displaying animations based on the current InputValue inserted by user
         if (ButtonType === 'Save') {
-            this.setState({ArrayOfGif: shuffleSeed.shuffle(this.state.DefaultArrayOfGif, parseInt(this.state.InputValue))}, () => console.log(this.state.ArrayOfGif));
+            this.setState({ArrayOfGif: shuffleSeed.shuffle(this.state.DefaultArrayOfGif, parseInt(this.state.InputValue))});
         }
 
 
         //we shuffle  number between 1- 9 instead of current number
         if (ButtonType === 'Randomise') {
             let rand = 1 + (Math.random() * (9 - 1));
-            this.setState({ArrayOfGif: shuffleSeed.shuffle(this.state.ArrayOfGif, rand)}, () => console.log(this.state.ArrayOfGif));
+            this.setState({ArrayOfGif: shuffleSeed.shuffle(this.state.ArrayOfGif, rand)});
         }
 
     }
