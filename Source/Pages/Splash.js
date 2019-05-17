@@ -1,6 +1,6 @@
 import React from "react";
-import { SafeAreaView ,View, ActivityIndicator,StatusBar} from 'react-native';
-import {AccentColor, width, NavyBlue, MyResponsiveFont} from "../Public/Ui";
+import {SafeAreaView, View, ActivityIndicator, StatusBar, StyleSheet} from 'react-native';
+import {AccentColor, width, NavyBlue, MyResponsiveFont, height} from "../Public/Ui";
 import MyText from "../CustomComponent/MyText";
 import AsyncStorage from '@react-native-community/async-storage';
 import {Actions} from 'react-native-router-flux';
@@ -34,25 +34,14 @@ export default class Splash extends React.Component {
         //The purpose of SafeAreaView is to render content within the safe area boundaries of a device
         return(
             <SafeAreaView
-                style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: NavyBlue}}>
+                style={styles.SafeAreaStyle}>
                 <StatusBar hidden/>
 
                     <MyText text={'Splash'}
                             componentStyles={{color: 'white', fontSize: MyResponsiveFont(2.5)}}/>
 
 
-                <View style={{
-                    position: 'absolute',
-                    width,
-                    height: 100,
-                    bottom: 0,
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                }}>
+                <View style={styles.ContentViewStyle}>
 
                     <ActivityIndicator
                         color={AccentColor} size={"large"}/>
@@ -67,3 +56,20 @@ export default class Splash extends React.Component {
 
     }
 }
+
+const styles = StyleSheet.create({
+    SafeAreaStyle:{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: NavyBlue},
+        ContentViewStyle:{
+            position: 'absolute',
+            width,
+            height: 100,
+            bottom: 0,
+            justifyContent: 'center',
+            alignItems: 'center'
+        }
+
+});
