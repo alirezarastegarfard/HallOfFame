@@ -1,5 +1,5 @@
 import React from "react";
-import {TouchableOpacity, View, Image, SafeAreaView, ScrollView, BackHandler} from 'react-native';
+import {TouchableOpacity, View, Image, SafeAreaView, ScrollView, BackHandler, StyleSheet} from 'react-native';
 import shuffleSeed from 'shuffle-seed';
 import {height, MyResponsiveFont, SecondaryTextColor, AccentColor} from "../Public/Ui";
 import MyInput from "../CustomComponent/MyInput";
@@ -55,13 +55,13 @@ export default class WelcomeScreen extends React.Component {
         return (
             <SafeAreaView>
                 <ScrollView>
-                    <View style={{height: height * 0.6, padding: 20}}>
+                    <View style={styles.ImageViewStyle}>
 
                         <Image
                             style={{width: '100%', height: '100%'}}
                             source={this.state.ArrayOfGif[this.state.CounterItemOfGif]}/>
                     </View>
-                    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={styles.InputViewStyle}>
                         <MyInput
                             value={this.state.InputValue}
                             onChangeText={(InputValue) => this.setState({InputValue: InputValue})}
@@ -75,19 +75,10 @@ export default class WelcomeScreen extends React.Component {
                     </View>
 
                     <View
-                        style={{
-                            marginRight: '4%',
-                            marginLeft: '4%',
-                            marginTop: '4%', height: 60,
-                        }}>
+                        style={styles.ButtonViewStyle}>
                         <TouchableOpacity
                             onPress={() => this.ChangeShowingGif('Save')}
-                            style={{
-                                width: '100%', height: '100%',
-                                backgroundColor: AccentColor,
-                                borderRadius: 4,
-                                alignItems: 'center', justifyContent: 'center'
-                            }}>
+                            style={styles.TouchableStyle}>
                             <MyText text={'Save'}
                                     componentStyles={{color: 'white'}}
                             />
@@ -96,19 +87,10 @@ export default class WelcomeScreen extends React.Component {
                     </View>
 
                     <View
-                        style={{
-                            marginRight: '4%',
-                            marginLeft: '4%',
-                            marginTop: '4%', height: 60,
-                        }}>
+                        style={styles.ButtonViewStyle}>
                         <TouchableOpacity
                             onPress={() => this.ChangeShowingGif('Randomise')}
-                            style={{
-                                width: '100%', height: '100%',
-                                backgroundColor: AccentColor,
-                                borderRadius: 4,
-                                alignItems: 'center', justifyContent: 'center'
-                            }}>
+                            style={styles.TouchableStyle}>
                             <MyText text={'Randomise'}
                                     componentStyles={{color: 'white'}}
                             />
@@ -153,3 +135,20 @@ export default class WelcomeScreen extends React.Component {
 
     }
 }
+
+const styles = StyleSheet.create({
+ ImageViewStyle: {height: height * 0.6, padding: 20},
+ InputViewStyle:{justifyContent: 'center', alignItems: 'center'},
+    ButtonViewStyle:{
+        marginRight: '4%',
+        marginLeft: '4%',
+        marginTop: '4%', height: 60,
+    },
+TouchableStyle:{
+    width: '100%', height: '100%',
+    backgroundColor: AccentColor,
+    borderRadius: 4,
+    alignItems: 'center', justifyContent: 'center'
+}
+
+});

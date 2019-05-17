@@ -1,5 +1,5 @@
 import React from "react";
-import {FlatList, View, TouchableOpacity, Image, ActivityIndicator, BackHandler} from "react-native";
+import {FlatList, View, TouchableOpacity, Image, ActivityIndicator, BackHandler, StyleSheet} from "react-native";
 import {AccentColor, height} from "../Public/Ui";
 import MyText from "../CustomComponent/MyText";
 import {FetchDataFromAPI} from "../Public/Functions";
@@ -59,8 +59,8 @@ export default class HallOfFameScreen extends React.Component {
         // Sheldon Cooper image at 3rd place always
         if ((index) % 2 !== 0 ||index===0)
             return (
-                <View style={{height: height * .3, padding: 5}}>
-                    <Image style={{width: '100%', height: '100%'}}
+                <View style={styles.ViewImageStyle}>
+                    <Image style={styles.ImageStyle}
                            source={{uri: 'data:image/png;base64,{' + item.PersonImageBase64 + '}'}}/>
                 </View>
 
@@ -68,13 +68,13 @@ export default class HallOfFameScreen extends React.Component {
         else
             return (
                 <View>
-                    <View style={{height: height * .3, padding: 5}}>
-                        <Image style={{width: '100%', height: '100%'}}
+                    <View style={styles.ViewImageStyle}>
+                        <Image style={styles.ImageStyle}
                                source={{uri: 'https://i.pinimg.com/originals/2e/29/c4/2e29c41787d04c4b3de4aa3832566357.jpg'}}/>
                     </View>
 
-                    <View style={{height: height * .3, padding: 5}}>
-                        <Image style={{width: '100%', height: '100%'}}
+                    <View style={styles.ViewImageStyle}>
+                        <Image style={styles.ImageStyle}
                                source={{uri: 'data:image/png;base64,{' + item.PersonImageBase64 + '}'}}/>
                     </View>
 
@@ -94,7 +94,7 @@ export default class HallOfFameScreen extends React.Component {
 
         FetchDataFromAPI("FamousActors", Parameter, (response) => {
 
-            console.log(response);
+
 
             if (response.Response === null) {
                 this.setState({refreshing: false, ListLoading: false});
@@ -165,4 +165,10 @@ export default class HallOfFameScreen extends React.Component {
 
 
 }
+
+const styles = StyleSheet.create({
+ViewImageStyle:{height: height * .3, padding: 5},
+ImageStyle:{width: '100%', height: '100%'}
+
+});
 
